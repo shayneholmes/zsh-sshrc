@@ -3,13 +3,15 @@ if [ -z $_color_wrapper ]; then
 fi
 
 _sshrc_wrapper () {
+  local command
   if [ $# = 1 ]; then
     # no commands; gimme an sshrc shell
-    $_color_wrapper sshrc "$@"
+    command="sshrc"
   else
     # commands (maybe); just run ssh directly
-    $_color_wrapper ssh "$@"
+    command="ssh"
   fi
+  $_color_wrapper $command "$@"
 }
 
 compdef _sshrc_wrapper=ssh
